@@ -46,7 +46,7 @@ pipeline {
      stage('Deploy') {
                 steps {
                     script {
-                       withCredentials([usernamePassword(credentialsId: 'localuser', passwordVariable: 'CREDENTIAL_PASSWORD' , usernameVariable: 'CREDENTIAL_USERNAME')])
+                       withCredentials([usernamePassword(credentialsId: 'localuser', passwordVariable: 'CREDENTIAL_PASSWORD' , usernameVariable: 'CREDENTIAL_USERNAME')]){
                       powershell ```
 
                       $credentials = New-Object System.Management.Automation.PSCredential($env:CREDENTIAL_USERNAME, (ConvertTo-SecureString $env:CREDENTIAL_PASSWORD))
@@ -57,6 +57,7 @@ pipeline {
 
                       Remove-PSDrive -Name X
                       ```
+                       }
                     }
                 }
             }
