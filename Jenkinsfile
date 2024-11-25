@@ -47,16 +47,16 @@ pipeline {
                 steps {
                     script {
                        withCredentials([usernamePassword(credentialsId: 'localuser', passwordVariable: 'CREDENTIAL_PASSWORD' , usernameVariable: 'CREDENTIAL_USERNAME')]){
-                      powershell ```
-
-                      $credentials = New-Object System.Management.Automation.PSCredential($env:CREDENTIAL_USERNAME, (ConvertTo-SecureString $env:CREDENTIAL_PASSWORD))
-
-                      New-PSDrive -Name X -PSProvider FileSystem -Root "\\\\103.245.164.12\\Test1" .Persist -Credential $credentials
-
-                      Copy-Item -Path 'publish\\*' -Destination 'X:\' -Force 
-
-                      Remove-PSDrive -Name X
-                      ```
+                          powershell ```
+    
+                          $credentials = New-Object System.Management.Automation.PSCredential($env:CREDENTIAL_USERNAME, (ConvertTo-SecureString $env:CREDENTIAL_PASSWORD))
+    
+                          New-PSDrive -Name X -PSProvider FileSystem -Root "\\\\103.245.164.12\\Test1" .Persist -Credential $credentials
+    
+                          Copy-Item -Path 'publish\\*' -Destination 'X:\' -Force 
+    
+                          Remove-PSDrive -Name X
+                          ```
                        }
                     }
                 }
